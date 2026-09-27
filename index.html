@@ -1269,8 +1269,8 @@ class Level {
     };
     this.spikes = (x, groundY, wT) => L.hazards.push(new Spikes(x, groundY, wT));
     this.lava = (x, y, wT) => L.lavas.push(new Lava(x, y, wT));
-    this.flag = (x, groundY) => { L.flag = new Flag(x, groundY); };
-    this.boss = (x, groundY) => { L.boss = new Boss(x, groundY - 108); };
+    this.addFlag = (x, groundY) => { L.flag = new Flag(x, groundY); };
+    this.addBoss = (x, groundY) => { L.boss = new Boss(x, groundY - 108); };
   }
 
   update(player, game) {
@@ -1857,7 +1857,7 @@ const LEVELS = [
       B.enemy('walker', 1300, 480);
       B.enemy('walker', 2100, 480);
       B.enemy('shell', 2500, 480);
-      B.flag(3150, 480);
+      B.addFlag(3150, 480);
     }
   },
   // ---------- 2 · DÉSERT ----------
@@ -1891,7 +1891,7 @@ const LEVELS = [
       B.enemy('walker', 2000, 480);
       B.enemy('shell', 2400, 480);
       B.enemy('shell', 3000, 480);
-      B.flag(3450, 480);
+      B.addFlag(3450, 480);
     }
   },
   // ---------- 3 · FORÊT ----------
@@ -1926,7 +1926,7 @@ const LEVELS = [
       B.enemy('walker', 2100, 480);
       B.enemy('shell', 2500, 480);
       B.enemy('flyer', 3000, 300);
-      B.flag(3450, 480);
+      B.addFlag(3450, 480);
     }
   },
   // ---------- 4 · GROTTE ----------
@@ -1965,7 +1965,7 @@ const LEVELS = [
       B.enemy('speedy', 2200, 480);
       B.enemy('speedy', 2600, 480);
       B.enemy('walker', 3000, 480);
-      B.flag(3650, 480);
+      B.addFlag(3650, 480);
     }
   },
   // ---------- 5 · NEIGE ----------
@@ -2002,7 +2002,7 @@ const LEVELS = [
       B.enemy('flyer', 2200, 300);
       B.enemy('speedy', 2600, 480);
       B.enemy('walker', 3000, 480);
-      B.flag(3650, 480);
+      B.addFlag(3650, 480);
     }
   },
   // ---------- 6 · VOLCAN ----------
@@ -2039,7 +2039,7 @@ const LEVELS = [
       B.enemy('speedy', 2400, 480);
       B.enemy('walker', 2700, 480);
       B.enemy('flyer', 3000, 300);
-      B.flag(3650, 480);
+      B.addFlag(3650, 480);
     }
   },
   // ---------- 7 · OCÉAN ----------
@@ -2079,7 +2079,7 @@ const LEVELS = [
       B.enemy('walker', 2400, 480);
       B.enemy('flyer', 2700, 300);
       B.enemy('ghost', 3100, 320);
-      B.flag(3450, 480);
+      B.addFlag(3450, 480);
     }
   },
   // ---------- 8 · CIEL ----------
@@ -2125,7 +2125,7 @@ const LEVELS = [
       B.enemy('speedy', 2500, 480);
       B.enemy('flyer', 2800, 280);
       B.enemy('ghost', 3100, 300);
-      B.flag(3650, 480);
+      B.addFlag(3650, 480);
     }
   },
   // ---------- 9 · CHÂTEAU ----------
@@ -2179,7 +2179,7 @@ const LEVELS = [
       B.enemy('ghost', 2700, 340);
       B.enemy('speedy', 3100, 480);
       B.enemy('walker', 3400, 480);
-      B.flag(3650, 480);
+      B.addFlag(3650, 480);
     }
   },
   // ---------- 10 · ESPACE + BOSS ----------
@@ -2230,7 +2230,7 @@ const LEVELS = [
       B.enemy('ghost', 2500, 320);
       B.enemy('shell', 2900, 480);
       B.enemy('speedy', 3200, 480);
-      B.boss(3800, 480);
+      B.addBoss(3800, 480);
     }
   }
 ];
