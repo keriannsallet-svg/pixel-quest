@@ -478,7 +478,7 @@ class Player {
     this.animT += this.state === 'run' ? Math.abs(this.vx) * 0.55 : 1;
 
     // --- dangers ---
-    for (const s of level.spikes) if (aabb(this, s.hitbox)) { this.die(game); return; }
+    for (const s of level.hazards) if (aabb(this, s.hitbox)) { this.die(game); return; }
     for (const l of level.lavas) if (aabb(this, l.hitbox)) { this.die(game); return; }
     if (this.y > level.h + 60) { this.die(game); return; }
   }
@@ -1234,7 +1234,7 @@ class Level {
     this.coins = [];
     this.blocks = [];
     this.enemies = [];
-    this.spikes = [];
+    this.hazards = [];
     this.lavas = [];
     this.movers = [];
     this.temps = [];
@@ -1267,7 +1267,7 @@ class Level {
       if (type === 'flyer') { e.startX = e.x; e.startY = e.y; }
       L.enemies.push(e);
     };
-    this.spikes = (x, groundY, wT) => L.spikes.push(new Spikes(x, groundY, wT));
+    this.spikes = (x, groundY, wT) => L.hazards.push(new Spikes(x, groundY, wT));
     this.lava = (x, y, wT) => L.lavas.push(new Lava(x, y, wT));
     this.flag = (x, groundY) => { L.flag = new Flag(x, groundY); };
     this.boss = (x, groundY) => { L.boss = new Boss(x, groundY - 108); };
@@ -1810,6 +1810,10 @@ class Level {
 
   drawBlocks(ctx, camX, camY) {
     for (const b of this.blocks) b.draw(ctx, camX, camY);
+  }
+
+  drawHazards(ctx, camX, camY) {
+    for (const s of this.hazards) s.draw(ctx, camX, camY);
   }
 
   drawCoins(ctx, camX, camY, t) {
@@ -2593,6 +2597,7 @@ class Game {
     this.level.drawLava(ctx, camX, camY, this.t);
     this.level.drawPlats(ctx, camX, camY, this.t);
     this.level.drawBlocks(ctx, camX, camY);
+    this.level.drawHazards(ctx, camX, camY);
     this.level.drawCoins(ctx, camX, camY, this.t);
     this.level.drawFlag(ctx, camX, camY, this.t);
     for (const e of this.level.enemies) e.draw(ctx, camX, camY, this.t);
